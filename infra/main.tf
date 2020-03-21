@@ -7,9 +7,9 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_project" "production" {
-  name        = "cacaffichage-minecraft-discord-bridge"
-  description = "A project to represent development resources."
-  purpose     = "Web Application"
+  name        = "Cacaffichage minecraft-discord-bridge"
+  description = "A minecraft-discord-bridge deployment for the cacaffichage minecraft server"
+  purpose     = "Service or API"
   environment = "Production"
   resources   = [
     digitalocean_droplet.bridge-droplet.urn,
