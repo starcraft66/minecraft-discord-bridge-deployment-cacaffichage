@@ -2,8 +2,13 @@ provider "docker" {
   host = "ssh://root@${var.bridge_droplet_ipv6_addr}:22"
 }
 
-resource "docker_image" "bridge-image" {
+data "docker_registry_image" "bridge-registry-image" {
   name = "starcraft66/minecraft-discord-bridge:snapshot"
+}
+
+resource "docker_image" "bridge-image" {
+  name = data.docker_registry_image.bridge-registry-image.name
+  pull_triggers = [data.docker_registry_image.bridge-registry-image.sha256_digest]
 }
 
 variable "bridge_droplet_ipv4_addr" {
